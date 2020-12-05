@@ -10,13 +10,14 @@ import requests
 from config.config_path import *
 from openpyxl import load_workbook
 from scripts.get_excel_order_data import get_excel_data
+from scripts.get_token import get_header_token
 import json
 
 
-def order_many(token):
+def order_many():
     method = 'post'
     url = dev_order_url
-    header = {'authorization': 'Bearer' + ' ' + token}
+    header = get_header_token()
 
     sh = get_excel_data(excel_data_path, 'order_many')
     for i in range(1, sh.max_row + 1):
@@ -25,11 +26,5 @@ def order_many(token):
         print(res.status_code)
 
 
-token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9' \
-        '.eyJpc3MiOiJodHRwOlwvXC9kZXYtYXBpLW1haW4udGVzdC5kbWwtZXhwcmVzcy5jb21cL2FwaVwvdXNlclwvc2Vzc2lvbiIsImlhdCI6MTYwNzA2Mzg0NywiZXhwIjoxNjA3NjY4NjQ3LCJuYmYiOjE2MDcwNjM4NDcsImp0aSI6Ink1OE1Ca0ZKNlNVckpjMEYiLCJzdWIiOjMwMjc0LCJwcnYiOiJhMGIxY2NmNDRlMjRjYTQ3NzJjYTgzNDYyZDE5ZjNlMGIzNmZmYWZmIn0.wbQC5S12_WioNjgUCu0wQOBPEik7KeiX4sPR10aQXtc '
-
-order_many(token)
-
-
-
-
+if __name__ == '__main__':
+    order_many()

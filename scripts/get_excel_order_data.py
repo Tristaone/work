@@ -16,8 +16,5 @@ def get_excel_data(excel_path, sheet_name):
     return sh
 
 
-if __name__ == '__main__':
-    print(get_excel_data(excel_data_path, 'order_many'))
-
 
 
